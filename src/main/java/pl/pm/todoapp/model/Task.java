@@ -1,22 +1,27 @@
     package pl.pm.todoapp.model;
 
     import javax.persistence.*;
+    import javax.validation.constraints.NotBlank;
 
     @Entity
     @Table(name = "tasks")
-    public class Task {
+    class Task {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
+        @NotBlank(message = "Task's description can not be empty.")
         private String description;
         private boolean done;
+
+        public Task() {
+        }
 
         public int getId() {
             return id;
         }
 
-        public void setId(int id) {
+        void setId(int id) {
             this.id = id;
         }
 
@@ -24,7 +29,7 @@
             return description;
         }
 
-        public void setDescription(String description) {
+        void setDescription(String description) {
             this.description = description;
         }
 
@@ -32,7 +37,7 @@
             return done;
         }
 
-        public void setDone(boolean done) {
+        void setDone(boolean done) {
             this.done = done;
         }
     }
